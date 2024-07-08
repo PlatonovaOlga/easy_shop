@@ -1,1 +1,1 @@
-Simple FastAPI application with produtts list and shopping cart
+Simple FastAPI application with products list and shopping cart
