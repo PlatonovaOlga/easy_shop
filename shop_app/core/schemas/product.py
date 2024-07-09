@@ -1,14 +1,14 @@
 from pydantic import BaseModel, ConfigDict
 
-class ProductBase(BaseModel):
+class ProductBaseSchema(BaseModel):
     #model_config = ConfigDict(from_attributes=True)
     name: str
     price: int
 
-class ProductCreate(ProductBase):
+class ProductCreateSchema(ProductBaseSchema):
     pass
 
-class ProductRead(ProductBase):
+class ProductReadSchema(ProductBaseSchema):
     # model_config = ConfigDict(
     #     from_attributes=True
     # )

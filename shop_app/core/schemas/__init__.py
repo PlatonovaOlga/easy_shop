@@ -1,7 +1,7 @@
 __all__ = (
-    "ProductBase", "ProductCreate", "ProductRead",
-    "UserBase", "UserCreate", "UserRead"
+    "ProductBaseSchema", "ProductCreateSchema", "ProductReadSchema",
+    "UserBaseSchema", "UserCreateSchema", "UserReadSchema"
 )
 
-from .product import ProductBase, ProductCreate, ProductRead
-from .user import UserBase, UserCreate, UserRead
+from .product import ProductBaseSchema, ProductCreateSchema, ProductReadSchema
+from .user import UserBaseSchema, UserCreateSchema, UserReadSchema

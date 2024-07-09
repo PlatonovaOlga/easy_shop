@@ -3,14 +3,14 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.repo import ProductRepo
-from core.schemas import ProductRead, ProductCreate
+from core.schemas import ProductReadSchema, ProductCreateSchema
 from core.models import db_helper
 
 
 router = APIRouter(tags=["Products"])
 
 
-@router.get("", response_model=List[ProductRead])
+@router.get("", response_model=List[ProductReadSchema])
 async def get_products(
     session: Annotated[
         AsyncSession, 
@@ -20,13 +20,13 @@ async def get_products(
     return products_list
 
 
-@router.post("", response_model=ProductRead)
+@router.post("", response_model=ProductReadSchema)
 async def create_product(
     session: Annotated[
         AsyncSession, 
         Depends(db_helper.session_getter)],
-    product: ProductCreate
-) -> ProductRead:
+    product: ProductCreateSchema
+) -> ProductReadSchema:
     new_product = await ProductRepo.create(
         session=session, 
         product_create=product)
@@ -34,7 +34,7 @@ async def create_product(
     return new_product
 
 
-@router.get("/{product_id}", response_model=ProductRead)
+@router.get("/{product_id}", response_model=ProductReadSchema)
 async def get_product_by_id(
     session: Annotated[
         AsyncSession, 

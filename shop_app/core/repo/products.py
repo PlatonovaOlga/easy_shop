@@ -2,7 +2,7 @@ from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from core.models import Product
-from core.schemas.product import ProductCreate
+from core.schemas import ProductCreateSchema
 
 
 class ProductRepo:
@@ -26,7 +26,7 @@ class ProductRepo:
     async def create(
         cls,
         session: AsyncSession,
-        product_create: ProductCreate
+        product_create: ProductCreateSchema
     ) -> Product:
         product = Product(**product_create.model_dump())
         session.add(product)

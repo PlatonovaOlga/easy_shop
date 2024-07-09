@@ -2,7 +2,7 @@ from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from core.models import User
-from core.schemas.user import UserCreate
+from core.schemas import UserCreateSchema
 
 
 class UserRepo:
@@ -26,7 +26,7 @@ class UserRepo:
     async def create(
         cls,
         session: AsyncSession,
-        user_create: UserCreate
+        user_create: UserCreateSchema
     ) -> User:
         user = User(**user_create.model_dump())
         session.add(user)

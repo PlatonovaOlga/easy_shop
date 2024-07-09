@@ -1,11 +1,11 @@
 from pydantic import BaseModel, ConfigDict
 
-class UserBase(BaseModel):
+class UserBaseSchema(BaseModel):
     name: str
     balance: int
 
-class UserCreate(UserBase):
+class UserCreateSchema(UserBaseSchema):
     pass
 
-class UserRead(UserBase):
+class UserReadSchema(UserBaseSchema):
     id: int

@@ -3,14 +3,14 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.repo import UserRepo
-from core.schemas import UserRead, UserCreate
+from core.schemas import UserReadSchema, UserCreateSchema
 from core.models import db_helper
 
 
 router = APIRouter(tags=["Users"])
 
 
-@router.get("", response_model=List[UserRead])
+@router.get("", response_model=List[UserReadSchema])
 async def get_users(
     session: Annotated[
         AsyncSession, 
@@ -20,13 +20,13 @@ async def get_users(
     return users_list
 
 
-@router.post("", response_model=UserRead)
+@router.post("", response_model=UserReadSchema)
 async def create_user(
     session: Annotated[
         AsyncSession, 
         Depends(db_helper.session_getter)],
-    user: UserCreate
-) -> UserRead:
+    user: UserCreateSchema
+) -> UserReadSchema:
     new_user = await UserRepo.create(
         session=session, 
         user_create=user)
@@ -34,7 +34,7 @@ async def create_user(
     return new_user
 
 
-@router.get("/{user_id}", response_model=UserRead)
+@router.get("/{user_id}", response_model=UserReadSchema)
 async def get_user_by_id(
     session: Annotated[
         AsyncSession, 
