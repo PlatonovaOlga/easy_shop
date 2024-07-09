@@ -1,8 +1,9 @@
 from typing import List, Annotated
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from core.crud import ProductRepo
-from core.schemas.product import ProductRead, ProductCreate
+
+from core.repo import ProductRepo
+from core.schemas import ProductRead, ProductCreate
 from core.models import db_helper
 
 
